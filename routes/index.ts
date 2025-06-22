@@ -8,7 +8,7 @@ export const Routes = {
   onboarding:{
  step1:'/onboarding/step1',
    step2:'/onboarding/step2',
-    step3:'/onboarding/step2',
+    step3:'/onboarding/step3',
   },
   home:{
     main:'/rider/(tabs)/home/',

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import {
   View,
-  
   StyleSheet,
   TextInput,
- 
   Alert,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { Entypo, Ionicons } from "@expo/vector-icons";
@@ -25,74 +26,80 @@ export default function DeleteAccount() {
       return;
     }
 
-    // TODO: Replace with actual delete account logic
     Alert.alert("Deleted", "Your account has been deleted.");
   };
 
   return (
-    <View style={styles.container}>
-      <PageTemplate title="Delete Account" />
-      {/* Header */}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.select({ ios: "padding", android: undefined })}
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <PageTemplate title="Delete Account" />
 
-      {/* Icon */}
-      <View style={styles.iconWrapper}>
-        <View style={styles.iconCircle}>
-          <Ionicons name="trash-outline" size={100} color="#fff" />
-        </View>
-        <ThemedText style={styles.warningText}>
-          This action cannot be undone. All your data will be permanently
-          removed from our servers.
-        </ThemedText>
-      </View>
-
-      {/* What will be deleted */}
-      <View style={styles.deletionBox}>
-        <ThemedText style={styles.listItemText}>What will be deleted:</ThemedText>
-        {[
-          "Your profile and account information",
-          "All photos, videos, and posts",
-          "Messages and conversations",
-          "Settings and preferences",
-          "Purchase history and subscriptions",
-        ].map((item, index) => (
-          <View style={styles.listItemRow} key={index}>
-            <Entypo
-              name="dot-single"
-              size={12}
-              color="black"
-              style={styles.bulletIcon}
-            />
-
-            <ThemedText style={styles.listItemText}>{item}</ThemedText>
+        <View style={styles.iconWrapper}>
+          <View style={styles.iconCircle}>
+            <Ionicons name="trash-outline" size={100} color="#fff" />
           </View>
-        ))}
-      </View>
+          <ThemedText style={styles.warningText}>
+            This action cannot be undone. All your data will be permanently
+            removed from our servers.
+          </ThemedText>
+        </View>
 
-      {/* Confirmation Input */}
-      <View style={{ marginTop: 24 }}>
-        <ThemedText style={styles.confirmLabel}>Type Delete here to confirm</ThemedText>
-        <TextInput
-          placeholder="Type Delete here"
-          value={confirmText}
-          onChangeText={setConfirmText}
-          style={styles.input}
-        />
-      </View>
+        <View style={styles.deletionBox}>
+          <ThemedText style={styles.listItemText}>
+            What will be deleted:
+          </ThemedText>
+          {[
+            "Your profile and account information",
+            "All photos, videos, and posts",
+            "Messages and conversations",
+            "Settings and preferences",
+            "Purchase history and subscriptions",
+          ].map((item, index) => (
+            <View style={styles.listItemRow} key={index}>
+              <Entypo
+                name="dot-single"
+                size={12}
+                color="black"
+                style={styles.bulletIcon}
+              />
+              <ThemedText style={styles.listItemText}>{item}</ThemedText>
+            </View>
+          ))}
+        </View>
 
-      {/* Buttons */}
-      <View style={styles.buttonRow}>
-        <CustomOutlineButton
-          style={styles.cancelBtn}
-          title="Cancel"
-          onPress={() => router.back()}
-        />
-        <CustomButton
-          style={styles.deleteBtn}
-          onPress={handleDelete}
-          text="Delete Account"
-        />
-      </View>
-    </View>
+        <View style={{ marginTop: 24 }}>
+          <ThemedText style={styles.confirmLabel}>
+            Type Delete here to confirm
+          </ThemedText>
+          <TextInput
+            placeholder="Type Delete here"
+            value={confirmText}
+            onChangeText={setConfirmText}
+            style={styles.input}
+          />
+        </View>
+
+        <View style={styles.buttonRow}>
+          <CustomOutlineButton
+            style={styles.cancelBtn}
+            title="Cancel"
+            onPress={() => router.back()}
+          />
+          <CustomButton
+            style={styles.deleteBtn}
+            onPress={handleDelete}
+            text="Delete Account"
+          />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -100,19 +107,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.light.background,
-    paddingTop: 60,
+  },
+  scrollContent: {
+    paddingTop: 40,
     paddingHorizontal: 20,
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 24,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#000",
+    paddingBottom: 40,
   },
   iconWrapper: {
     alignItems: "center",
@@ -127,7 +126,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: Colors.light.text,
     fontSize: 14,
-    paddingHorizontal: 100,
+    paddingHorizontal: 50,
     fontFamily: "Raleway",
     lineHeight: 24,
   },
@@ -136,12 +135,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     marginTop: 34,
-  },
-  listItem: {
-    fontSize: 12,
-    color: Colors.light.text,
-    marginBottom: 8,
-    lineHeight: 24,
   },
   confirmLabel: {
     fontSize: 12,
@@ -167,11 +160,9 @@ const styles = StyleSheet.create({
   cancelBtn: {
     width: "40%",
   },
-
   deleteBtn: {
     width: "40%",
   },
-
   listItemRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -183,7 +174,6 @@ const styles = StyleSheet.create({
   listItemText: {
     fontSize: 12,
     color: Colors.light.text,
-
     lineHeight: 24,
   },
 });

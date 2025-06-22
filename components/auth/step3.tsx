@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
  container: {
-    padding: 20,
+    paddingHorizontal: 20,
     backgroundColor: Colors.light.background,
     display:'flex',
     justifyContent:'space-between', 

@@ -92,8 +92,9 @@ const styles = StyleSheet.create({
     borderWidth: 0.33,
     borderRadius: 5,
     paddingHorizontal: 12,
-    backgroundColor: 'transparent',
-    borderColor:'#E6E7EE'
+     backgroundColor: Colors.light.background,
+   
+     borderColor: Colors.light.gray,
   },
   icon: {
     marginRight: 8,
@@ -113,8 +114,8 @@ const styles = StyleSheet.create({
     width: 1,
     height: 50,
     marginRight: 8,
-      backgroundColor:'#E6E7EE',
-        borderColor:'#E6E7EE'
+      backgroundColor:Colors.light.gray,
+          borderColor: Colors.light.gray,
   },
   input: {
     flex: 1,

@@ -5,6 +5,7 @@ import ProfileHeader from './profileHeader';
 import ProfileStats from './profileStat';
 import InfoSection from './infoSection';
 import DocumentGrid from './documentGrid';
+import { Colors } from '@/constants/Colors';
 
 const RiderProfile = () => {
   const personalInfo = {
@@ -41,11 +42,22 @@ const RiderProfile = () => {
   return (
     <ScrollView style={styles.container}>
       <ProfileHeader />
-      <View style={{marginHorizontal:60}}>
+      <View style={{marginHorizontal:20}}>
       <ProfileStats />
       <InfoSection title="Personal Information" info={personalInfo} onEdit={() => router.push('/rider/(tabs)/(account)/profile/editPersonal')} />
       <InfoSection title="Bike Information" info={bikeInfo} onEdit={() => router.push('/rider/(tabs)/(account)/profile/editBike')} />
-      <DocumentGrid documents={documents} onEdit={() => router.push('/rider/(tabs)/(account)/profile/editDocument/index')} />
+    <DocumentGrid
+  documents={documents}
+ onEdit={(selectedDoc) => {
+  const docTypeSlug = selectedDoc.name.toLowerCase().replace(/ /g, '-');
+  router.push(
+  `/rider/(tabs)/(account)/profile/editDocument/${docTypeSlug}?title=${encodeURIComponent(selectedDoc.name)}`
+);
+
+}}
+
+/>
+
    </View>
     </ScrollView>
   );
@@ -57,6 +69,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    backgroundColor: '#fff',
+    backgroundColor:Colors.light.background,
   },
 });

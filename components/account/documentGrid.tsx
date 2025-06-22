@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
-  
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -16,35 +15,57 @@ const DocumentGrid = ({
   onEdit,
 }: {
   documents: any[];
-  onEdit: () => void;
-}) => (
-  <View style={styles.card}>
-    <View style={styles.header}>
-      <ThemedText style={styles.title}>Documents / Attachments</ThemedText>
-      <TouchableOpacity onPress={onEdit} style={styles.editBox}>
-        <Ionicons name="create-outline" size={18} color="#f93" />{" "}
-        <ThemedText style={styles.edittext}>Edit</ThemedText>
-      </TouchableOpacity>
+  onEdit: (selectedDoc: any) => void;
+}) => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const handleSelect = (index: number) => {
+    setSelectedIndex(index === selectedIndex ? null : index);
+  };
+
+  return (
+    <View style={styles.card}>
+      <View style={styles.header}>
+        <ThemedText style={styles.title}>Documents / Attachments</ThemedText>
+        <TouchableOpacity
+          onPress={() => selectedIndex !== null && onEdit(documents[selectedIndex])}
+          style={styles.editBox}
+          disabled={selectedIndex === null}
+        >
+          <Ionicons name="create-outline" size={18} color={selectedIndex === null ? "#ccc" : "#f93"} />
+          <ThemedText style={[styles.edittext, { color: selectedIndex === null ? "#ccc" : Colors.light.orange }]}>
+            Edit
+          </ThemedText>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.grid}>
+        {documents.map((doc, i) => (
+          <TouchableOpacity
+            key={i}
+            onPress={() => handleSelect(i)}
+            style={[
+              styles.item,
+              selectedIndex === i && { borderColor: Colors.light.orange, borderWidth: 1 },
+            ]}
+          >
+            <Image source={doc.uri} style={styles.image} />
+            <View style={styles.viewbox}>
+              <ThemedText style={styles.docName}>{doc.name}.png</ThemedText>
+              <ThemedText style={styles.docDate}>Created {doc.date}</ThemedText>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
-    <View style={styles.grid}>
-      {documents.map((doc, i) => (
-        <View style={styles.item} key={i}>
-          <Image source={doc.uri} style={styles.image} />
-          <View style={styles.viewbox}>
-            <ThemedText style={styles.docName}>{doc.name}.png</ThemedText>
-            <ThemedText style={styles.docDate}>Created {doc.date}</ThemedText>
-          </View>
-        </View>
-      ))}
-    </View>
-  </View>
-);
+  );
+};
 
 export default DocumentGrid;
 
+
 const styles = StyleSheet.create({
   card: {
-    marginBottom: 20,
+    marginBottom: 40,
     padding: 16,
     borderRadius: 10,
     backgroundColor: "#fff",
@@ -66,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderColor: "rgba(0, 0, 0, 0.16)",
+    borderColor: Colors.light["gray-200"],
     paddingBottom: 12,
   },
   title: {

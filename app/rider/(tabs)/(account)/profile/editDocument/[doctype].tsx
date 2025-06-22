@@ -16,6 +16,7 @@ const docTitles: Record<string, string> = {
 
 const DocumentDetailPage = () => {
   const { docType, title } = useLocalSearchParams<{ docType: string; title: string }>();
+
   const [image, setImage] = useState<string | null>(null);
 
   const pickImage = async () => {
@@ -36,7 +37,8 @@ const DocumentDetailPage = () => {
         <TouchableOpacity onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={24} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.title}>{title || "Document"}</Text>
+       <Text style={styles.title}>{docTitles[docType] || "Document"}</Text>
+
         <View style={{ width: 24 }} />
       </View>
 

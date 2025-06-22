@@ -14,6 +14,8 @@ interface RideRequestProps {
 }
 
 const { height } = Dimensions.get("window")
+
+const { width: screenWidth } = Dimensions.get("window");
 export const RideDetails: React.FC<RideRequestProps> = ({
  
   activeStep
@@ -143,59 +145,58 @@ const statusBoxes = [
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:Colors.light.background,
+    backgroundColor: Colors.light.background,
     flex: 1,
-     paddingVertical:20,
-     padding:30
+    paddingVertical: 20,
+    paddingHorizontal: screenWidth * 0.05, 
+    paddingBottom:20
   },
   headerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical: 15,
-   
-    paddingTop:12,
- 
+    paddingTop: 12,
   },
-  box:{
-     borderBottomWidth:0.94,
-      borderTopWidth:0.94,
-    paddingVertical:2,
-    borderColor:'#DFDFDF'
+  box: {
+    borderBottomWidth: 0.94,
+    borderTopWidth: 0.94,
+    paddingVertical: 8,
+    borderColor: "#DFDFDF",
   },
   title: {
-    fontSize: 20,
+    fontSize: screenWidth * 0.05,
     fontWeight: "bold",
-     fontFamily:'raleway'
+    fontFamily: "raleway",
   },
   order: {
-    fontSize: 14,
+    fontSize: screenWidth * 0.035,
     color: "#999",
-     fontFamily:'raleway'
+    fontFamily: "raleway",
   },
   section: {
     marginBottom: 12,
   },
   sectionbox: {
-   display:'flex',
-   flexDirection:"row",
-   justifyContent:'space-between',
-   marginBottom:12
-   
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    marginBottom: 12,
   },
   label: {
     fontWeight: "bold",
     color: "#333",
-    fontFamily:'raleway'
+    fontFamily: "raleway",
   },
   value: {
-    fontSize: 14,
+    fontSize: screenWidth * 0.035,
     color: "#666",
     marginBottom: 6,
-     fontFamily:'raleway',
-     paddingTop:3
+    fontFamily: "raleway",
+    paddingTop: 3,
+    flexShrink: 1,
   },
   phoneBox: {
     flexDirection: "row",
@@ -205,82 +206,67 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     borderRadius: 4,
-    alignSelf: "flex-start",
+    marginTop: 8,
   },
   phoneText: {
     marginLeft: 3,
     color: Colors.light.orange,
     fontWeight: "500",
-    fontFamily:'raleway',
-    fontSize:10
+    fontFamily: "raleway",
+    fontSize: screenWidth * 0.03,
   },
   trackText: {
-    fontSize: 14,
-    marginBottom: 4,
-    fontFamily:'raleway',
-    fontWeight:500
+    fontSize: screenWidth * 0.035,
+    fontFamily: "raleway",
+    fontWeight: "500",
   },
-  buttonRow: {
-    flexDirection: "row",
-    gap: 10,
-    paddingTop:32
+  trip: {
+    fontSize: screenWidth * 0.03,
+    fontFamily: "raleway",
+    color: Colors.light.orange,
+    textAlign: "center",
   },
-  trip:{
-fontSize:8,
-fontFamily:'raleway',
-color:Colors.light.orange,
-textAlign:'center'
-  },
-  tripbox:{
-    display:'flex',
-    justifyContent:'center',
-    borderRadius:5,
-
+  tripbox: {
+    justifyContent: "center",
+    borderRadius: 5,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },      // 👈 x=0, y=4
-    shadowOpacity: 0.1,                         // 👈 1A in hex = 10% opacity
-    shadowRadius: 4,                            // 👈 blur radius
-    elevation: 4,   
-    backgroundColor:'#F0F0F0',
-    width:80 
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 4,
+    backgroundColor: "#F0F0F0",
+    width: screenWidth * 0.25,
   },
-  tripconatin:{
-     display:'flex',
-    justifyContent:'flex-end',
-    alignItems:'flex-end',
-    paddingVertical:8
+  tripconatin: {
+    alignItems: "flex-end",
+    paddingVertical: 8,
   },
   locationRow: {
-  flexDirection: "row",
-  marginBottom: 12,
-},
-
-iconColumn: {
-  alignItems: "center",
-  marginRight: 12,
-},
-
-verticalLine: {
-  width: 1,
-  height: 30,
-  backgroundColor: "#ccc",
-  marginVertical: 2,
-},
-boxtitle:{
-    fontWeight:500,
-    fontSize:13, fontFamily:'raleway',
-    paddingVertical:12
-},
-gridContainer: {
-  flexDirection: "row",
-  flexWrap: "wrap",
-  justifyContent: "space-between",
-  marginTop: 16,
-  rowGap: 12,
-  columnGap: 12,
-},
-
-
-
-  
+    flexDirection: "row",
+    marginBottom: 12,
+  },
+  iconColumn: {
+    alignItems: "center",
+    marginRight: 12,
+  },
+  verticalLine: {
+    width: 1,
+    height: 30,
+    backgroundColor: "#ccc",
+    marginVertical: 2,
+  },
+  boxtitle: {
+    fontWeight: "500",
+    fontSize: screenWidth * 0.035,
+    fontFamily: "raleway",
+    paddingVertical: 12,
+  },
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginTop: 16,
+    rowGap: 12,
+    columnGap: 12,
+  },
 });

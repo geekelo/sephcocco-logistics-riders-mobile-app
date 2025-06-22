@@ -133,7 +133,7 @@ const handleUpload = async (key: keyof typeof uploads) => {
 
 const styles = StyleSheet.create({
    container: {
-     padding: 20,
+    paddingHorizontal:10,
      backgroundColor: Colors.light.background,
      display:'flex',
      justifyContent:'space-between', 

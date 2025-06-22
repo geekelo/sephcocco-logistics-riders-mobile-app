@@ -10,7 +10,7 @@ export default function TabsLayout() {
         headerShown: false, // ❌ Hides header bar
         tabBarActiveTintColor: "#F93A01",
         tabBarInactiveTintColor: "#999",
-        tabBarStyle: { height: 80, paddingBottom: 6 },
+        tabBarStyle: { height: 85, paddingBottom: 16 },
         tabBarLabelStyle: { fontSize: 12 },
       }}
     >
