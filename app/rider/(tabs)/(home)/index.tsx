@@ -1,23 +1,27 @@
 import HomeScreen from "@/components/home/home";
 import { ThemedText } from "@/components/ThemedText";
 import { Colors } from "@/constants/Colors";
+import { Routes } from "@/routes";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 function NotificationIcon() {
+  const router = useRouter()
   return (
-    <View style={styles.notificationWrapper}>
+
+    <TouchableOpacity onPress={() => {router.push(Routes.account.notification)}} style={styles.notificationWrapper}>
       <Ionicons name="notifications" size={27} color="#FFC923" />
       <View style={styles.badge}>
         <Text style={styles.badgeText}>3</Text> {/* Change count dynamically */}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 export default function HomesScreen() {
   return (
     <View  style={styles.container}>
-        <View style={{display:'flex', justifyContent:'space-between', alignItems:"center"}}>
+        <View style={{display:'flex', justifyContent:'space-between', alignItems:"center", flexDirection:'row', padding:20}}>
             <ThemedText fontFamily="raleway" style={{paddingVertical:30, fontWeight:600, fontSize:24}}>Home</ThemedText>
             <NotificationIcon />
         </View>
@@ -33,6 +37,7 @@ const styles = StyleSheet.create({
    
     justifyContent: "center",
     backgroundColor: Colors.light.background,
+    
   },
    notificationWrapper: {
     marginRight: 15,

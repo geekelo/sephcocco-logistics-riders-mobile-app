@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.background,
     display:'flex',
     justifyContent:'space-between', 
-    width:'100%', paddingVertical:30,
+    width:'100%', paddingVertical:60,
         height: screenHeight ,
   },
    scrollContent: {

@@ -18,7 +18,7 @@ export default function BottomNav() {
         ),
         tabBarActiveTintColor: "#54B175",
         tabBarInactiveTintColor: "#999",
-        tabBarStyle: { height: 60, paddingBottom: 6 },
+        tabBarStyle: { height: 70, paddingBottom: 16 },
         tabBarLabelStyle: { fontSize: 12 },
       }}
     >

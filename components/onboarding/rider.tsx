@@ -64,7 +64,7 @@ const Onboarding = () => {
           <ThemedText
             type="title"
             fontFamily="raleway"
-            style={{ fontWeight: "600", paddingVertical: 6 }}
+            style={{ fontWeight: "600", paddingVertical: 6, textAlign:'center' }}
           >
             {title}
           </ThemedText>
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
     marginVertical: 60,
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
   },
   textBox: {
     paddingHorizontal: 10,

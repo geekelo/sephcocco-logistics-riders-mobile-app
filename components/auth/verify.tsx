@@ -20,7 +20,7 @@ const screenWidth = Dimensions.get('window').width -50;
 const screenHeight = Dimensions.get('window').height;
 const boxSpacing = 10; // space between boxes
 const totalSpacing = boxSpacing * (OTP_LENGTH - 1);
-const otpBoxWidth = (screenWidth - 48 * 2 - totalSpacing) / OTP_LENGTH; // paddingHorizontal = 24 * 2
+const otpBoxWidth = (screenWidth - 28 * 2 - totalSpacing) / OTP_LENGTH; // paddingHorizontal = 24 * 2
 
 
 export default function VerifyEmailScreen() {
@@ -152,5 +152,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: Colors.light.text,
+    padding:7
   },
 });

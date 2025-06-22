@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10,
     borderBottomWidth:1,
-    borderColor:'rgba(0, 0, 0, 0.16)',
+    borderColor:Colors.light["gray-200"],
     paddingBottom:12
   },
   title: {
